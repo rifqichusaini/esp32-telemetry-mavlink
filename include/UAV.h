@@ -37,7 +37,7 @@ class UAV{
       Wire.begin(SDA_PIN, SCL_PIN);   // inisialisasi I2C
       delay(50);
       
-      bmp.begin();
+      bmp.initBMP();
       bmp.setSeaLevel(1013.25f);  // optional
       delay(50);
       
