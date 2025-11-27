@@ -42,7 +42,7 @@ bool alertActive = false;
 void sendMavlinkMessage(mavlink_message_t* msg) {
   uint8_t buf[MAVLINK_MAX_PACKET_LEN];
   uint16_t len = mavlink_msg_to_send_buffer(buf, msg);
-  Serial1.write(buf, len);
+  Serial2.write(buf, len);
 }
 
 void sendHeartbeat() {
@@ -106,7 +106,7 @@ void setup() {
   delay(10);
 
   // Init Serial1 to SiK radio
-  Serial1.begin(SIK_BAUD, SERIAL_8N1, SIK_RX_PIN, SIK_TX_PIN);
+  Serial2.begin(SIK_BAUD);
   delay(10);
 
   // Warm-up

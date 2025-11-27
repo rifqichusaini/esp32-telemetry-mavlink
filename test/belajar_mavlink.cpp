@@ -33,8 +33,8 @@ void sendHeartbeat(){
 }
 
 void sendText(const char* text){
-  mavlink_message_t dataFrame;
-  mavlink_msg_statustext_pack(
+	mavlink_message_t dataFrame;
+	mavlink_msg_statustext_pack(
     SYSTEM_ID,
     COMPONENT_ID,
     &dataFrame,
@@ -54,6 +54,7 @@ void loop(){
   delay(1000);
 
   char text[50];
-  snprintf(text, sizeof(text), "Roll: %f, Pitch: %f", roll_deg, pitch_deg);
+  snprintf(text, sizeof(text), "Warning! Roll: %.1f, Pitch: %.1f", roll_deg, pitch_deg);
+	sendText(text);
   delay(2000);
 }
