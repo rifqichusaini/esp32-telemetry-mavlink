@@ -182,12 +182,12 @@ void loop() {
     float roll_rad = roll_deg * M_PI / 180.0f;
     float pitch_rad = pitch_deg * M_PI / 180.0f;
 
-    // // Read BMP280
-    // bmp.read_raw_data();
-    // bmp.convert_data();
-    // bmp.print_data();
+    // Read BMP280
+    bmp.read_raw_data();
+    bmp.convert_data();
+    bmp.print_data();
 
-    // float altitude = bmp.get_altitude();
+    float altitude = bmp.get_altitude();
 
     // HEARTBEAT
     if (now - lastHb >= HEARTBEAT_MS) {

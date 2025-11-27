@@ -80,7 +80,7 @@ class BMP280 {
   public:
     BMP280(uint8_t addr = 0x76) : i2c_addr(addr) {}
 
-    bool begin(bool doWireBegin = false) {
+    bool initBMP(bool doWireBegin = false) {
       if (doWireBegin) Wire.begin();
 
       write8(0xE0, 0xB6); // soft reset

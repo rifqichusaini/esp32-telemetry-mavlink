@@ -11,10 +11,10 @@ void setup() {
   Wire.begin(SDA_PIN, SCL_PIN);   // inisialisasi I2C
   delay(50);
 
-  if (!bmp.begin()) {
+  if (!bmp.initBMP()) {
     Serial.println("BMP init FAILED at 0x76. Trying 0x77...");
     bmp = BMP280(0x77);
-    if (!bmp.begin()) {
+    if (!bmp.initBMP()) {
       Serial.println("BMP init FAILED at 0x77 also. Check wiring/address.");
       while (1) delay(1000);
     }
