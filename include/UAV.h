@@ -110,7 +110,10 @@ class UAV{
       Serial2.print("Roll: "); Serial2.print(roll_deg); Serial2.print(" deg | ");
       Serial2.print("Pitch: "); Serial2.print(pitch_deg); Serial2.print(" deg | ");
       Serial2.print("Altitude: "); Serial2.print(altitude); Serial2.println(" m");
-
+      Serial2.println("===================================================================");
+      Serial2.print("Max Roll: "); Serial2.print(maxRoll); Serial2.print(" deg | ");
+      Serial2.print("Max Altitude: "); Serial2.print(maxAlt); Serial2.println(" m");
+      Serial2.println("===================================================================");
       delay(100);
     }  
 };
