@@ -22,7 +22,7 @@ class BMP280 {
     float altitude = 0.0f;
     float seaLevel_hPa = 1013.25f;
 
-    bool write8(uint8_t reg, uint8_t value) {
+    bool write8bit(uint8_t reg, uint8_t value) {
       Wire.beginTransmission(i2c_addr);
       Wire.write(reg);
       Wire.write(value);
@@ -39,22 +39,6 @@ class BMP280 {
       if (got < len) return false;
       for (uint8_t i=0;i<len;i++) buf[i] = Wire.read();
       return true;
-    }
-
-    uint16_t read16(uint8_t reg) {
-      uint8_t b[2];
-      if (!readBytes(reg, b, 2)) return 0;
-      return (uint16_t)b[0] | ((uint16_t)b[1] << 8);
-    }
-
-    int16_t readS16(uint8_t reg) {
-      return (int16_t) read16(reg);
-    }
-
-    uint32_t read24(uint8_t reg) {
-      uint8_t b[3];
-      if (!readBytes(reg, b, 3)) return 0;
-      return ((uint32_t)b[0] << 16) | ((uint32_t)b[1] << 8) | b[2];
     }
 
     bool readCalibration() {
@@ -83,7 +67,7 @@ class BMP280 {
     bool initBMP(bool doWireBegin = false) {
       if (doWireBegin) Wire.begin();
 
-      write8(0xE0, 0xB6); // soft reset
+      write8bit(0xE0, 0xB6); // soft reset
       delay(10);
 
       uint8_t id;
@@ -93,9 +77,9 @@ class BMP280 {
       if (!readCalibration()) return false;
 
       // Safe defaults (Adafruit-like)
-      write8(0xF4, 0x57); // osrs_t x2, osrs_p x16, normal
+      write8bit(0xF4, 0x57); // osrs_t x2, osrs_p x16, normal
       delay(1);
-      write8(0xF5, 0x14); // t_sb 125ms, filter x4
+      write8bit(0xF5, 0x14); // t_sb 125ms, filter x4
       delay(1);
 
       return (initialized = true);
